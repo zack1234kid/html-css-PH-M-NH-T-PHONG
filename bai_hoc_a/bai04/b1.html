@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Buổi 4 - Bài 1: Icon SVG</title>
+<style>
+body { font-family: Arial, sans-serif; text-align: center; padding: 24px; background: #fafafa; }
+h1 { margin-bottom: 32px; }
+.icon-row { display: flex; justify-content: center; gap: 40px; flex-wrap: wrap; }
+.icon-wrapper { width: 150px; }
+.icon-wrapper p { margin-top: 8px; color: #555; }
+/* ===== Icon 1: Mặt cười ===== */
+.face { fill: #f1c40f; stroke: #333; stroke-width: 2; transition: fill 0.3s; }
+.eye { fill: #333; }
+.mouth { fill: none; stroke: #333; stroke-width: 3; }
+.icon-wrapper:hover .face { fill: #ffeaa7; }
+/* ===== Icon 2: Ngôi sao (dùng polygon) ===== */
+.star { fill: #f39c12; transition: fill 0.3s, transform 0.3s; transform-origin: center; }
+.icon-wrapper:hover .star { fill: #e67e22; transform: scale(1.1); }
+/* ===== Icon 3: Trái tim (dùng path) ===== */
+.heart { fill: #e74c3c; transition: fill 0.3s; }
+.icon-wrapper:hover .heart { fill: #c0392b; }
+</style>
+</head>
+
+<body>
+<h1>Bộ Icon SVG — Rê chuột để xem hiệu ứng</h1>
+<div class="icon-row">
+<!-- Icon 1: Mặt cười -->
+<div class="icon-wrapper">
+<svg viewBox="0 0 100 100" width="120" height="120">
+<circle class="face" cx="50" cy="50" r="40"/>
+<circle class="eye" cx="35" cy="40" r="5"/>
+<circle class="eye" cx="65" cy="40" r="5"/>
+<path class="mouth" d="M 30 60 Q 50 80 70 60"/>
+</svg>
+<p>Mặt cười (circle + path)</p>
+</div>
+<!-- Icon 2: Ngôi sao -->
+<div class="icon-wrapper">
+<svg viewBox="0 0 100 100" width="120" height="120">
+<polygon class="star"
+points="50,5 61,38 96,38 68,59 79,92 50,72 21,92 32,59 4,38 39,38"/>
+</svg>
+<p>Ngôi sao (polygon)</p>
+</div>
+<!-- Icon 3: Trái tim -->
+<div class="icon-wrapper">
+<svg viewBox="0 0 100 100" width="120" height="120">
+<path class="heart" d="M50 88
+C20 65 5 45 5 28
+C5 12 18 2 32 2
+C42 2 48 8 50 14
+
+C52 8 58 2 68 2
+C82 2 95 12 95 28
+C95 45 80 65 50 88 Z"/>
+</svg>
+<p>Trái tim (path cong)</p>
+</div>
+</div>
+</body>
+</html>

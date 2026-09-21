@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Buổi 2 - Bài 2: Đặt bàn nhà hàng</title>
+<style>
+  body { font-family: Arial, sans-serif; background: #fafafa; margin: 0; padding: 24px; }
+  form { max-width: 480px; margin: 0 auto; background: #fff; padding: 20px 24px; border-radius: 8px; }
+  fieldset { border: 1px solid #ddd; border-radius: 6px; padding: 16px 20px; }
+  legend { font-weight: bold; padding: 0 8px; }
+  label { font-weight: bold; }
+  input, textarea { width: 100%; padding: 8px; margin-top: 4px; box-sizing: border-box; border: 1px solid #ccc; border-radius: 4px; }
+  p { margin: 14px 0; }
+  button { width: 100%; padding: 12px; margin-top: 16px; background: #27ae60; color: #fff; border: none; border-radius: 6px; font-size: 16px; cursor: pointer; }
+  button:hover { background: #219150; }
+  meter { width: 100%; height: 22px; }
+  .ghi-chu-ban { font-size: 14px; color: #555; margin-top: 4px; }
+</style>
+</head>
+<body>
+  <h1 style="text-align:center;">Đặt bàn nhà hàng</h1>
+  <form action="#" method="post">
+    <fieldset>
+      <legend>Thông tin đặt bàn</legend>
+
+      <p>
+        <label for="hoten">Họ và tên: <span style="color:red">*</span></label>
+        <input type="text" id="hoten" name="hoten" placeholder="Nguyễn Văn A" required>
+      </p>
+
+      <p>
+        <label for="phone">Số điện thoại: <span style="color:red">*</span></label>
+        <input type="tel" id="phone" name="phone" pattern="[0-9]{10}" title="Nhập đúng 10 số điện thoại" placeholder="0912345678" required>
+      </p>
+
+      <p>
+        <label for="ngaydat">Ngày đặt bàn: <span style="color:red">*</span></label>
+        <input type="date" id="ngaydat" name="ngaydat" min="2026-08-14" required>
+      </p>
+
+      <p>
+        <label for="giodat">Giờ đặt bàn: <span style="color:red">*</span></label>
+        <input type="time" id="giodat" name="giodat" min="10:00" max="22:00" required>
+      </p>
+
+      <p>
+        <label for="soluongkhach">Số lượng khách:</label>
+        <input type="number" id="soluongkhach" name="soluongkhach" min="1" max="20" value="2">
+      </p>
+
+      <!-- meter: đo giá trị tĩnh (số bàn còn trống) -->
+      <p>
+        <label for="banconso">Số bàn còn trống hôm nay:</label><br>
+        <meter id="banconso" value="5" min="0" max="20" low="5" high="15" optimum="20">5/20 bàn</meter>
+        <span class="ghi-chu-ban">5/20 bàn — nên đặt sớm nếu đi vào giờ cao điểm.</span>
+      </p>
+
+      <p>
+        <label for="yeucau">Yêu cầu đặc biệt:</label>
+        <textarea id="yeucau" name="yeucau" rows="3" placeholder="Ví dụ: bàn gần cửa sổ, có ghế trẻ em..."></textarea>
+      </p>
+    </fieldset>
+
+    <button type="submit">Xác nhận đặt bàn</button>
+  </form>
+</body>
+</html>

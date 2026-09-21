@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Buổi 3 - Bài 1: Giày Sneaker XYZ</title>
+<style>
+body { font-family: Arial, sans-serif; margin: 0; color: #222; }
+header { background: #2c3e50; color: #fff; padding: 16px 24px; }
+main { max-width: 800px; margin: 0 auto; padding: 0 24px 40px; }
+section { margin-top: 32px; }
+picture img, .chi-tiet img { width: 100%; border-radius: 6px; display: block; }
+video { width: 100%; max-width: 640px; border-radius: 6px; }
+footer { text-align: center; padding: 16px; color: #777; }
+</style>
+</head>
+<body>
+<header>
+<h1>Giày Sneaker XYZ</h1>
+</header>
+<main>
+<!-- ===== BANNER RESPONSIVE BẰNG <picture> =====
+Trình duyệt kiểm tra từng <source> theo thứ tự từ trên xuống,
+"media" nào đúng điều kiện màn hình hiện tại thì lấy ảnh đó.
+<img> ở cuối luôn bắt buộc, dùng làm fallback. -->
+
+<section>
+<picture>
+<source media="(max-width: 600px)"
+
+srcset="https://picsum.photos/id/21/600/300">
+
+<source media="(max-width: 1200px)"
+
+srcset="https://picsum.photos/id/21/900/400">
+<img src="https://picsum.photos/id/21/1200/500"
+alt="Banner giới thiệu giày sneaker XYZ">
+</picture>
+</section>
+<!-- ===== ẢNH CHI TIẾT DÙNG srcset/sizes (đổi ĐỘ PHÂN GIẢI của cùng 1 ảnh) ===== -->
+<section class="chi-tiet">
+<h2>Chi tiết sản phẩm</h2>
+<img
+src="https://picsum.photos/id/103/800/600"
+srcset="https://picsum.photos/id/103/400/300 400w,
+https://picsum.photos/id/103/800/600 800w,
+https://picsum.photos/id/103/1200/900 1200w"
+
+sizes="(max-width: 600px) 100vw, 600px"
+alt="Chi tiết giày sneaker XYZ màu trắng">
+<p>Giày sneaker XYZ — thiết kế tối giản, đế cao su chống trơn,
+phù hợp mọi trang phục.</p>
+</section>
+<!-- ===== VIDEO DEMO SẢN PHẨM ===== -->
+<section>
+<h2>Video giới thiệu</h2>
+<video controls poster="https://picsum.photos/id/26/640/360">
+<source src="https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4" type="video/mp4">
+Trình duyệt của bạn không hỗ trợ video HTML5.
+</video>
+
+</section>
+<!-- ===== AUDIO GIỚI THIỆU (VOICE-OVER) ===== -->
+<section>
+<h2>Nghe giới thiệu sản phẩm</h2>
+<audio controls>
+<source src="https://interactive-examples.mdn.mozilla.net/media/cc0-audio/t-rex-roar.mp3" type="audio/mpeg">
+Trình duyệt của bạn không hỗ trợ audio HTML5.
+</audio>
+</section>
+</main>
+<footer>
+<p>&copy; 2026 Shop Sneaker XYZ</p>
+</footer>
+</body>
+</html>

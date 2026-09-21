@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Buổi 4 - Bài 2: Biểu đồ doanh thu (Canvas)</title>
+<style>
+body { font-family: Arial, sans-serif; text-align: center; padding: 24px; background: #fafafa; }
+canvas { border: 1px solid #ccc; background: #fff; border-radius: 6px; }
+.chu-thich { display: flex; justify-content: center; gap: 24px; margin-top: 12px; font-size: 14px; }
+.cham { display: inline-block; width: 12px; height: 12px; border-radius: 2px; margin-right: 6px; vertical-align:
+middle; }
+</style>
+</head>
+<body>
+<h1>Doanh thu 6 tháng gần nhất (triệu đồng)</h1>
+<canvas id="chart" width="500" height="320"></canvas>
+
+<div class="chu-thich">
+<span><span class="cham" style="background:#2ecc71;"></span>Đạt chỉ tiêu (&ge; 50tr)</span>
+<span><span class="cham" style="background:#3498db;"></span>Chưa đạt (&lt; 50tr)</span>
+</div>
+<script>
+const canvas = document.getElementById('chart');
+const ctx = canvas.getContext('2d');
+const data = [
+{ label: 'T3', value: 32 },
+{ label: 'T4', value: 45 },
+{ label: 'T5', value: 38 },
+{ label: 'T6', value: 60 },
+{ label: 'T7', value: 55 },
+{ label: 'T8', value: 48 },
+];
+const barWidth = 55;
+const gap = 20;
+const baseY = 260; // vị trí trục hoành (đáy biểu đồ)
+const scale = 3; // hệ số phóng đại giá trị cho dễ nhìn
+// ----- Vẽ tiêu đề ngay trên canvas -----
+ctx.font = 'bold 16px Arial';
+ctx.fillStyle = '#2c3e50';
+ctx.fillText('Biểu đồ doanh thu theo tháng', 20, 25);
+// ----- Vẽ trục hoành -----
+ctx.strokeStyle = '#333';
+ctx.lineWidth = 1;
+ctx.beginPath();
+
+ctx.moveTo(30, baseY);
+ctx.lineTo(470, baseY);
+ctx.stroke();
+// ----- Vẽ từng cột dữ liệu -----
+data.forEach((item, index) => {
+const x = 40 + index * (barWidth + gap);
+const barHeight = item.value * scale;
+// Tô màu cột theo điều kiện: đạt chỉ tiêu (>=50) màu xanh lá,
+// chưa đạt (<50) màu xanh dương
+ctx.fillStyle = item.value >= 50 ? '#2ecc71' : '#3498db';
+ctx.fillRect(x, baseY - barHeight, barWidth, barHeight);
+// Nhãn tháng dưới trục hoành
+ctx.fillStyle = '#333';
+ctx.font = '13px Arial';
+ctx.textAlign = 'center';
+ctx.fillText(item.label, x + barWidth / 2, baseY + 20);
+// Giá trị trên đầu mỗi cột
+ctx.fillText(item.value + 'tr', x + barWidth / 2, baseY - barHeight - 8);
+});
+ctx.textAlign = 'left';
+</script>
+</body>
+</html>

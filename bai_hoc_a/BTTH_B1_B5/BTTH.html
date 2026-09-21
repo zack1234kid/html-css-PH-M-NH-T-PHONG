@@ -1,0 +1,620 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bài tổng hợp Buổi 1-5: TechConf 2026</title>
+<style>
+* {
+box-sizing: border-box;
+margin: 0;
+padding: 0;
+}
+body {
+font-family: Arial, sans-serif;
+color: #222;
+line-height: 1.5;
+}
+a {
+color: #3498db;
+}
+img,
+video {
+max-width: 100%;
+display: block;
+
+}
+/* ===== HEADER + NAV (Buổi 1: Semantic) ===== */
+header.site-header {
+background: #1e2a38;
+color: #fff;
+padding: 14px 24px;
+display: flex;
+justify-content: space-between;
+align-items: center;
+flex-wrap: wrap;
+gap: 10px;
+}
+header .logo {
+display: flex;
+align-items: center;
+gap: 8px;
+font-weight: bold;
+font-size: 1.2rem;
+}
+header nav ul {
+display: flex;
+gap: 18px;
+list-style: none;
+flex-wrap: wrap;
+}
+header nav a {
+color: #fff;
+text-decoration: none;
+
+font-size: 14px;
+}
+header nav a:hover {
+text-decoration: underline;
+}
+main {
+max-width: 960px;
+margin: 0 auto;
+padding: 0 20px;
+}
+section {
+margin: 40px 0;
+}
+h2 {
+margin-bottom: 16px;
+border-left: 4px solid #3498db;
+padding-left: 10px;
+}
+/* ===== BANNER responsive (Buổi 3: picture) + video (Buổi 3) ===== */
+.banner img {
+width: 100%;
+border-radius: 8px;
+}
+.video-box {
+margin-top: 16px;
+}
+
+.video-box video {
+width: 100%;
+border-radius: 8px;
+}
+/* ===== CANVAS (Buổi 4) ===== */
+#chart {
+border: 1px solid #ddd;
+border-radius: 8px;
+max-width: 100%;
+}
+/* ===== DIỄN GIẢ: article + figure (Buổi 1, 3) + icon SVG yêu thích (Buổi 4) ===== */
+.speaker-grid {
+display: flex;
+gap: 20px;
+flex-wrap: wrap;
+}
+article.speaker {
+flex: 1 1 260px;
+max-width: 300px;
+background: #f7f8fa;
+border-radius: 10px;
+padding: 16px;
+text-align: center;
+position: relative;
+}
+article.speaker figure img {
+width: 120px;
+
+height: 120px;
+object-fit: cover;
+border-radius: 50%;
+margin: 0 auto 10px;
+}
+article.speaker figcaption {
+font-size: 13px;
+color: #777;
+}
+.btn-yeuthich {
+background: none;
+border: none;
+cursor: pointer;
+margin-top: 8px;
+}
+.btn-yeuthich svg {
+width: 26px;
+height: 26px;
+transition: fill 0.2s, transform 0.2s;
+}
+.btn-yeuthich.active svg {
+transform: scale(1.15);
+}
+/* ===== CHƯƠNG TRÌNH: time (Buổi 1) ===== */
+.schedule-item {
+display: flex;
+gap: 16px;
+
+padding: 10px 0;
+border-bottom: 1px solid #eee;
+}
+.schedule-item time {
+flex: 0 0 90px;
+color: #3498db;
+font-weight: bold;
+}
+/* ===== FORM ĐĂNG KÝ (Buổi 2) ===== */
+form.form-dangky {
+background: #f7f8fa;
+padding: 20px 24px;
+border-radius: 10px;
+max-width: 520px;
+}
+fieldset {
+border: 1px solid #ddd;
+border-radius: 6px;
+padding: 16px 20px;
+}
+legend {
+font-weight: bold;
+padding: 0 8px;
+}
+label {
+font-weight: bold;
+display: block;
+
+margin-top: 12px;
+}
+input,
+textarea {
+width: 100%;
+padding: 8px;
+margin-top: 4px;
+border: 1px solid #ccc;
+border-radius: 4px;
+}
+output {
+font-weight: bold;
+color: #e74c3c;
+}
+meter {
+width: 100%;
+height: 20px;
+margin-top: 4px;
+}
+.ghi-chu-ve {
+font-size: 13px;
+color: #666;
+margin-top: 4px;
+}
+#canhBaoHetVe {
+background: #ffe9e9;
+color: #c0392b;
+
+padding: 8px 12px;
+border-radius: 6px;
+margin-top: 10px;
+}
+button[type="submit"] {
+width: 100%;
+padding: 12px;
+margin-top: 18px;
+background: #27ae60;
+color: #fff;
+border: none;
+border-radius: 6px;
+font-size: 16px;
+cursor: pointer;
+}
+button[type="submit"]:hover {
+background: #219150;
+}
+/* ===== ASIDE: audio (Buổi 3) + Geolocation (Buổi 5) ===== */
+aside.thong-tin {
+background: #eef2f5;
+padding: 20px 24px;
+border-radius: 10px;
+margin: 40px 0;
+}
+aside.thong-tin h3 {
+margin-bottom: 10px;
+}
+
+#btnViTri {
+padding: 8px 14px;
+border: none;
+border-radius: 6px;
+background: #3498db;
+color: #fff;
+cursor: pointer;
+}
+#ketQuaViTri {
+margin-top: 8px;
+font-size: 14px;
+color: #444;
+}
+/* ===== GHI CHÚ CÁ NHÂN: contenteditable (Buổi 1) + localStorage (Buổi 5) ===== */
+.ghi-chu-canhan {
+border: 1px dashed #999;
+padding: 10px 14px;
+border-radius: 6px;
+background: #fff;
+min-height: 60px;
+}
+/* ===== FOOTER + social icon SVG (Buổi 1, 4) ===== */
+footer.site-footer {
+background: #1e2a38;
+color: #ccc;
+text-align: center;
+padding: 24px;
+margin-top: 40px;
+
+}
+.social-icons {
+display: flex;
+justify-content: center;
+gap: 14px;
+margin-bottom: 10px;
+}
+.social-icons svg {
+width: 22px;
+height: 22px;
+fill: #ccc;
+transition: fill 0.2s;
+}
+.social-icons a:hover svg {
+fill: #3498db;
+}
+</style>
+</head>
+<body>
+<!-- ============================================================
+HEADER + NAV - Semantic HTML5 (Buổi 1)
+============================================================ -->
+<header class="site-header">
+<div class="logo">
+<!-- Icon logo vẽ trực tiếp bằng SVG (Buổi 4) -->
+<svg width="26" height="26" viewBox="0 0 26 26">
+<rect x="1" y="1" width="24" height="24" rx="6" fill="#3498db" />
+
+<text x="13" y="18" font-size="13" fill="#fff" text-anchor="middle" font-family="Arial">TC</text>
+</svg>
+TechConf 2026
+</div>
+<nav>
+<ul>
+<li><a href="#gioi-thieu">Giới thiệu</a></li>
+<li><a href="#thong-ke">Thống kê</a></li>
+<li><a href="#dien-gia">Diễn giả</a></li>
+<li><a href="#chuong-trinh">Chương trình</a></li>
+<li><a href="#dang-ky">Đăng ký</a></li>
+</ul>
+</nav>
+</header>
+<main>
+<!-- ============================================================
+GIỚI THIỆU - <picture> responsive + <video> (Buổi 3)
+============================================================ -->
+<section id="gioi-thieu">
+<h2>Giới thiệu sự kiện</h2>
+<picture class="banner">
+<source media="(max-width: 600px)" srcset="https://picsum.photos/id/180/600/300">
+<source media="(max-width: 1000px)" srcset="https://picsum.photos/id/180/900/400">
+<img src="https://picsum.photos/id/180/1200/500" alt="Banner TechConf 2026">
+</picture>
+<p style="margin-top:14px;">
+TechConf 2026 là hội thảo công nghệ thường niên quy tụ hàng trăm lập trình viên,
+chuyên gia và doanh nghiệp công nghệ trong khu vực. Sự kiện diễn ra trong 1 ngày
+
+với các phiên chia sẻ chuyên sâu về Web, AI và Cloud.
+</p>
+<div class="video-box">
+<video controls poster="https://picsum.photos/id/26/640/360">
+<source src="https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4" type="video/mp4">
+Trình duyệt của bạn không hỗ trợ video HTML5.
+</video>
+</div>
+</section>
+<!-- ============================================================
+THỐNG KÊ - Canvas API (Buổi 4)
+============================================================ -->
+<section id="thong-ke">
+<h2>Số lượng người tham dự qua các năm</h2>
+<canvas id="chart" width="600" height="300"></canvas>
+</section>
+<!-- ============================================================
+DIỄN GIẢ - article + figure (Buổi 1, 3) + yêu thích lưu
+localStorage (Buổi 5) + icon SVG trái tim (Buổi 4)
+============================================================ -->
+<section id="dien-gia">
+<h2>Diễn giả</h2>
+<div class="speaker-grid">
+<article class="speaker" data-speaker-id="s1">
+<figure>
+<img src="https://picsum.photos/id/64/300/300" alt="Ảnh diễn giả Nguyễn Minh Khoa">
+<figcaption>Chuyên gia Frontend</figcaption>
+</figure>
+
+<h3>Nguyễn Minh Khoa</h3>
+<button class="btn-yeuthich" data-id="s1" title="Yêu thích diễn giả này">
+<svg viewBox="0 0 24 24">
+<path d="M12 21s-6.7-4.4-9.3-8.1C.6 10 1.3 6.4 4.4 5 6.8 3.9 9.4 4.9 12 8
+
+c2.6-3.1 5.2-4.1 7.6-3 3.1 1.4 3.8 5 1.7 7.9C18.7 16.6 12 21 12 21z" fill="none"
+stroke="#e74c3c" stroke-width="1.5" />
+</svg>
+</button>
+</article>
+<article class="speaker" data-speaker-id="s2">
+<figure>
+<img src="https://picsum.photos/id/91/300/300" alt="Ảnh diễn giả Trần Thu Hà">
+<figcaption>Kỹ sư AI</figcaption>
+</figure>
+<h3>Trần Thu Hà</h3>
+<button class="btn-yeuthich" data-id="s2" title="Yêu thích diễn giả này">
+<svg viewBox="0 0 24 24">
+<path d="M12 21s-6.7-4.4-9.3-8.1C.6 10 1.3 6.4 4.4 5 6.8 3.9 9.4 4.9 12 8
+
+c2.6-3.1 5.2-4.1 7.6-3 3.1 1.4 3.8 5 1.7 7.9C18.7 16.6 12 21 12 21z" fill="none"
+stroke="#e74c3c" stroke-width="1.5" />
+</svg>
+</button>
+</article>
+<article class="speaker" data-speaker-id="s3">
+<figure>
+<img src="https://picsum.photos/id/177/300/300" alt="Ảnh diễn giả Lê Đức Anh">
+<figcaption>Kiến trúc sư Cloud</figcaption>
+</figure>
+<h3>Lê Đức Anh</h3>
+<button class="btn-yeuthich" data-id="s3" title="Yêu thích diễn giả này">
+
+<svg viewBox="0 0 24 24">
+<path d="M12 21s-6.7-4.4-9.3-8.1C.6 10 1.3 6.4 4.4 5 6.8 3.9 9.4 4.9 12 8
+
+c2.6-3.1 5.2-4.1 7.6-3 3.1 1.4 3.8 5 1.7 7.9C18.7 16.6 12 21 12 21z" fill="none"
+stroke="#e74c3c" stroke-width="1.5" />
+</svg>
+</button>
+</article>
+</div>
+</section>
+<!-- ============================================================
+CHƯƠNG TRÌNH - <time datetime> (Buổi 1)
+============================================================ -->
+<section id="chuong-trinh">
+<h2>Chương trình sự kiện</h2>
+<div class="schedule-item">
+<time datetime="2026-10-10T08:00">08:00</time>
+<span>Đón khách &amp; check-in</span>
+</div>
+<div class="schedule-item">
+<time datetime="2026-10-10T09:00">09:00</time>
+<span>Khai mạc &amp; giới thiệu chương trình</span>
+</div>
+<div class="schedule-item">
+<time datetime="2026-10-10T09:30">09:30</time>
+<span>Xu hướng Frontend hiện đại - Nguyễn Minh Khoa</span>
+</div>
+<div class="schedule-item">
+<time datetime="2026-10-10T11:00">11:00</time>
+<span>Ứng dụng AI trong sản phẩm thực tế - Trần Thu Hà</span>
+
+</div>
+<div class="schedule-item">
+<time datetime="2026-10-10T14:00">14:00</time>
+<span>Kiến trúc Cloud cho hệ thống lớn - Lê Đức Anh</span>
+</div>
+</section>
+<!-- ============================================================
+ĐĂNG KÝ - Form validate HTML5 thuần (Buổi 2)
+============================================================ -->
+<section id="dang-ky">
+<h2>Đăng ký tham dự</h2>
+<form class="form-dangky" action="#" method="post" style="max-width: 500px; margin: 0 auto;">
+<fieldset>
+<legend>Thông tin đăng ký</legend>
+<label for="hoten">Họ và tên: <span style="color:red">*</span></label>
+<input type="text" id="hoten" name="hoten" placeholder="Nguyễn Văn A" required autofocus>
+<label for="email">Email: <span style="color:red">*</span></label>
+<input type="email" id="email" name="email" placeholder="ten@example.com" required>
+<label for="phone">Số điện thoại: <span style="color:red">*</span></label>
+<input type="tel" id="phone" name="phone" pattern="[0-9]{10}" title="Nhập đúng 10 số điện thoại"
+placeholder="0912345678" required>
+<label for="ngaysinh">Ngày sinh:</label>
+<input type="date" id="ngaysinh" name="ngaysinh" max="2026-08-17">
+<label for="loaive">Loại vé:</label>
+<input type="text" id="loaive" name="loaive" list="loaive-list" placeholder="Chọn hoặc tự nhập...">
+
+<datalist id="loaive-list">
+<option value="Standard">
+<option value="VIP">
+<option value="Sinh viên">
+</datalist>
+<label for="soluongve">Số lượng vé:</label>
+<input type="range" id="soluongve" name="soluongve" min="1" max="10" value="1">
+<p>Số lượng: <output id="soLuongHienThi" for="soluongve">1</output> vé
+- Tổng tiền: <output id="tongTien">300.000</output>đ</p>
+<label for="veconlai">Vé còn lại (đợt này):</label>
+<meter id="veconlai" value="35" min="0" max="200" low="20" high="100" optimum="200">35/200</meter>
+<p class="ghi-chu-ve">35/200 vé - nên đăng ký sớm.</p>
+<p id="canhBaoHetVe" hidden>Bạn đã chọn số lượng vé vượt quá số vé còn lại của đợt này.</p>
+<label for="ghichu">Ghi chú thêm:</label>
+<textarea id="ghichu" name="ghichu" rows="3" placeholder="Yêu cầu đặc biệt (nếu có)..."></textarea>
+</fieldset>
+<button type="submit">Đăng ký ngay</button>
+</form>
+</section>
+<!-- ============================================================
+ASIDE - audio (Buổi 3) + Geolocation API (Buổi 5)
+============================================================ -->
+<aside class="thong-tin">
+<h3>Địa điểm tổ chức</h3>
+<p>Trung tâm Hội nghị ABC — 123 Đường Công Nghệ, TP. Hà Nội</p>
+
+<audio controls style="margin-top:10px; width:100%;">
+<source src="https://interactive-examples.mdn.mozilla.net/media/cc0-audio/t-rex-roar.mp3" type="audio/mpeg">
+Trình duyệt của bạn không hỗ trợ audio HTML5.
+</audio>
+<div style="margin-top:14px;">
+<button id="btnViTri">📍 Xem khoảng cách từ vị trí của bạn</button>
+<p id="ketQuaViTri"></p>
+</div>
+<h3 style="margin-top:20px;">Ghi chú cá nhân của bạn</h3>
+<div class="ghi-chu-canhan" id="ghiChuCaNhan" contenteditable="true">
+Nhấp vào đây để ghi chú riêng (ví dụ: mang theo laptop, hỏi thêm về workshop AI...).
+Ghi chú sẽ tự động được lưu lại.
+</div>
+</aside>
+</main>
+<!-- ============================================================
+FOOTER - Semantic (Buổi 1) + icon SVG mạng xã hội (Buổi 4)
+============================================================ -->
+<footer class="site-footer">
+<div class="social-icons">
+<a href="#" title="Facebook">
+<svg viewBox="0 0 24 24">
+<path d="M22 12a10 10 0 1 0-11.6 9.9v-7H7.9V12h2.5V9.8
+c0-2.5 1.5-3.9 3.8-3.9 1.1 0 2.2.2 2.2.2v2.5h-1.3c-1.2 0-1.6.8-1.6 1.6V12h2.8
+l-.4 2.9h-2.4v7A10 10 0 0 0 22 12z" />
+</svg>
+</a>
+<a href="#" title="YouTube">
+
+<svg viewBox="0 0 24 24">
+<path d="M23 12s0-3.4-.4-5a3 3 0 0 0-2.1-2.1C18.9 4.5 12 4.5 12 4.5
+s-6.9 0-8.5.4A3 3 0 0 0 1.4 7C1 8.6 1 12 1 12s0 3.4.4 5a3 3 0 0 0 2.1 2.1c1.6.4 8.5.4 8.5.4
+s6.9 0 8.5-.4a3 3 0 0 0 2.1-2.1c.4-1.6.4-5 .4-5zM9.8 15.5v-7l6 3.5-6 3.5z" />
+</svg>
+</a>
+<a href="#" title="Email">
+<svg viewBox="0 0 24 24">
+<path d="M2 4h20v16H2V4zm2 2v.01L12 12l8-5.99V6H4zm16 2.24l-8 6-8-6V18h16V8.24z" />
+</svg>
+</a>
+</div>
+<p>&copy; 2026 TechConf - Bài thực hành tổng hợp Buổi 1-5 (HTML5)</p>
+</footer>
+<script>
+// ================================================================
+// 1) CANVAS — vẽ biểu đồ số người tham dự qua các năm (Buổi 4)
+// ================================================================
+const canvas = document.getElementById('chart');
+const ctx = canvas.getContext('2d');
+const duLieuThamDu = [
+{ nam: '2023', soNguoi: 180 },
+{ nam: '2024', soNguoi: 260 },
+{ nam: '2025', soNguoi: 340 },
+{ nam: '2026', soNguoi: 420 },
+];
+const barWidth = 90, gap = 40, baseY = 260, scale = 0.55;
+ctx.strokeStyle = '#333';
+ctx.beginPath();
+ctx.moveTo(30, baseY);
+
+ctx.lineTo(570, baseY);
+ctx.stroke();
+duLieuThamDu.forEach(function (item, index) {
+const x = 50 + index * (barWidth + gap);
+const h = item.soNguoi * scale;
+ctx.fillStyle = '#3498db';
+ctx.fillRect(x, baseY - h, barWidth, h);
+ctx.fillStyle = '#333';
+ctx.font = '14px Arial';
+ctx.textAlign = 'center';
+ctx.fillText(item.nam, x + barWidth / 2, baseY + 20);
+ctx.fillText(item.soNguoi + ' người', x + barWidth / 2, baseY - h - 10);
+});
+ctx.textAlign = 'left';
+// ================================================================
+// 2) YÊU THÍCH DIỄN GIẢ - lưu bằng localStorage + JSON (Buổi 5)
+// ================================================================
+function layDanhSachYeuThich() {
+const duLieu = localStorage.getItem('dienGiaYeuThich');
+return duLieu ? JSON.parse(duLieu) : [];
+}
+function luuDanhSachYeuThich(danhSach) {
+localStorage.setItem('dienGiaYeuThich', JSON.stringify(danhSach));
+}
+function capNhatGiaoDienTrai(btn, daYeuThich) {
+const svgPath = btn.querySelector('path');
+
+if (daYeuThich) {
+btn.classList.add('active');
+svgPath.setAttribute('fill', '#e74c3c');
+} else {
+btn.classList.remove('active');
+svgPath.setAttribute('fill', 'none');
+}
+}
+const nutYeuThich = document.querySelectorAll('.btn-yeuthich');
+const dsYeuThich = layDanhSachYeuThich();
+nutYeuThich.forEach(function (btn) {
+const id = btn.dataset.id;
+capNhatGiaoDienTrai(btn, dsYeuThich.includes(id));
+btn.addEventListener('click', function () {
+let ds = layDanhSachYeuThich();
+if (ds.includes(id)) {
+ds = ds.filter(function (item) { return item !== id; });
+} else {
+ds.push(id);
+}
+luuDanhSachYeuThich(ds);
+capNhatGiaoDienTrai(btn, ds.includes(id));
+});
+});
+// ================================================================
+// 3) GHI CHÚ CÁ NHÂN - contenteditable + localStorage (Buổi 1, 5)
+// ================================================================
+const ghiChu = document.getElementById('ghiChuCaNhan');
+
+const ghiChuDaLuu = localStorage.getItem('ghiChuCaNhan');
+if (ghiChuDaLuu) {
+ghiChu.textContent = ghiChuDaLuu;
+}
+ghiChu.addEventListener('input', function () {
+localStorage.setItem('ghiChuCaNhan', ghiChu.textContent);
+});
+// ================================================================
+// 4) FORM ĐĂNG KÝ - tính tổng tiền theo số lượng vé (Buổi 2)
+// + cảnh báo hết vé dùng thuộc tính hidden (Buổi 1)
+// ================================================================
+const GIA_VE = 300000;
+const VE_CON_LAI = 35;
+const inputSoLuong = document.getElementById('soluongve');
+const outputSoLuong = document.getElementById('soLuongHienThi');
+const outputTongTien = document.getElementById('tongTien');
+const canhBao = document.getElementById('canhBaoHetVe');
+function capNhatTongTien() {
+const soLuong = Number(inputSoLuong.value);
+outputSoLuong.textContent = soLuong;
+outputTongTien.textContent = (soLuong * GIA_VE).toLocaleString('vi-VN');
+canhBao.hidden = soLuong <= VE_CON_LAI; // hiện cảnh báo nếu chọn vượt số vé còn lại
+}
+inputSoLuong.addEventListener('input', capNhatTongTien);
+capNhatTongTien();
+// ================================================================
+// 5) GEOLOCATION API (Buổi 5)
+// ================================================================
+document.getElementById('btnViTri').addEventListener('click', function () {
+
+const ketQua = document.getElementById('ketQuaViTri');
+if (!('geolocation' in navigator)) {
+ketQua.textContent = 'Trình duyệt của bạn không hỗ trợ Geolocation.';
+return;
+}
+ketQua.textContent = 'Đang lấy vị trí...';
+navigator.geolocation.getCurrentPosition(
+function (viTri) {
+const lat = viTri.coords.latitude.toFixed(4);
+const lng = viTri.coords.longitude.toFixed(4);
+ketQua.textContent = 'Vị trí của bạn: ' + lat + ', ' + lng +
+' (địa điểm tổ chức: 21.0056, 105.7850 - Trung tâm Hội nghị ABC, Hà Nội)';
+},
+function (loi) {
+ketQua.textContent = 'Không lấy được vị trí: ' + loi.message;
+}
+);
+});
+</script>
+</body>
+</html>

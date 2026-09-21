@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Buổi 3 - Bài 2: Blog cá nhân</title>
+<style>
+body { font-family: Arial, sans-serif; margin: 0; color: #222; }
+header { position: relative; height: 280px; overflow: hidden; }
+
+header video { width: 100%; height: 100%; object-fit: cover; }
+header .tieu-de {
+position: absolute; inset: 0; display: flex; flex-direction: column;
+justify-content: center; align-items: center; color: #fff;
+background: rgba(0,0,0,0.35); text-align: center;
+}
+main { max-width: 800px; margin: 0 auto; padding: 24px; }
+article { margin-bottom: 32px; }
+article img { width: 100%; border-radius: 6px; display: block; }
+footer { text-align: center; padding: 16px; color: #777; }
+</style>
+</head>
+<body>
+<!-- ===== VIDEO NỀN CHO HEADER =====
+autoplay + muted: tự chạy khi trang load (trình duyệt chặn autoplay có tiếng
+nên BẮT BUỘC phải muted mới autoplay được)
+loop: lặp lại liên tục
+playsinline: video chạy ngay trong trang trên mobile, không tự bung fullscreen -->
+<header>
+<video autoplay muted loop playsinline>
+<source src="https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4" type="video/mp4">
+</video>
+<div class="tieu-de">
+<h1>Blog Công Nghệ Của Tôi</h1>
+<p>Chia sẻ kiến thức lập trình web mỗi tuần</p>
+</div>
+</header>
+<main>
+<!-- ===== BÀI VIẾT 1: dùng srcset/sizes cho ảnh minh họa ===== -->
+
+<article>
+<h2>Vì sao nên học HTML5 và CSS3 ngay hôm nay?</h2>
+<img
+src="https://picsum.photos/id/60/800/450"
+srcset="https://picsum.photos/id/60/400/225 400w,
+https://picsum.photos/id/60/800/450 800w,
+https://picsum.photos/id/60/1200/675 1200w"
+
+sizes="(max-width: 600px) 100vw, 800px"
+alt="Minh họa lập trình web">
+<p>HTML5 và CSS3 là nền tảng của mọi giao diện web hiện đại...</p>
+</article>
+<!-- ===== BÀI VIẾT 2: dùng <picture> để đổi định dạng ảnh (.webp ưu tiên, .jpg dự phòng) =====
+Trong dự án thực tế, ảnh .webp nhẹ hơn .jpg rất nhiều. Ở đây minh họa đúng
+cú pháp; nếu trình duyệt không hỗ trợ .webp sẽ tự động dùng .jpg dự phòng. -->
+<article>
+<h2>Responsive Images: Tối ưu tốc độ tải trang</h2>
+<picture>
+<source srcset="https://picsum.photos/id/48/800/450.webp" type="image/webp">
+<source srcset="https://picsum.photos/id/48/800/450" type="image/jpeg">
+<img src="https://picsum.photos/id/48/800/450" alt="Tối ưu tốc độ tải ảnh">
+</picture>
+<p>Chọn đúng định dạng và kích thước ảnh giúp trang tải nhanh hơn đáng kể,
+đặc biệt quan trọng với người dùng mobile 3G/4G.</p>
+</article>
+</main>
+<footer>
+<p>&copy; 2026 Blog Công Nghệ Của Tôi</p>
+</footer>
+
+</body>
+</html>

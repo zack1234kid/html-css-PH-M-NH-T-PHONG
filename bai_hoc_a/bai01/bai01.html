@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Buổi 1 - Bài 1: Cafe ABC (Semantic HTML5)</title>
+<style>
+/* CSS tối giản chỉ để dễ quan sát cấu trúc, chưa dùng kỹ thuật CSS3 nào (sẽ học từ Buổi 6) */
+body { font-family: Arial, sans-serif; margin: 0; color: #222; }
+header, footer { background: #2c3e50; color: #fff; padding: 16px 24px; }
+header nav ul { list-style: none; display: flex; gap: 20px; padding: 0; margin: 8px 0 0; }
+header nav a { color: #fff; text-decoration: none; }
+main { padding: 24px; max-width: 800px; margin: 0 auto; }
+section { margin-bottom: 32px; }
+article.item { border: 1px solid #ddd; padding: 12px; margin-bottom: 10px; border-radius: 4px; }
+aside { background: #f5f6fa; padding: 16px; border-left: 4px solid #2c3e50; }
+.thong-bao { background: #ffe9e9; padding: 8px 12px; margin-top: 10px; }
+.ghi-chu { border: 1px dashed #999; padding: 8px 12px; margin-top: 10px; }
+</style>
+</head>
+<body>
+<!-- ===== HEADER + NAV ===== -->
+<header>
+<h1>Cafe ABC</h1>
+<nav>
+<ul>
+
+<li><a href="#gioi-thieu">Giới thiệu</a></li>
+<li><a href="#thuc-don">Thực đơn</a></li>
+<li><a href="#lien-he">Liên hệ</a></li>
+</ul>
+</nav>
+</header>
+<!-- ===== MAIN CONTENT ===== -->
+<main>
+<section id="gioi-thieu">
+<h2>Về chúng tôi</h2>
+<p>Cafe ABC hoạt động từ năm 2015, chuyên phục vụ cà phê rang xay nguyên chất
+và không gian yên tĩnh để làm việc, học tập.</p>
+</section>
+<section id="thuc-don">
+<h2>Thực đơn</h2>
+<!-- Mỗi món là 1 <article> vì có thể tách ra dùng độc lập.
+data-price / data-category dùng để sau này JavaScript đọc và xử lý
+(ví dụ: tính tổng tiền, lọc theo danh mục) -->
+<article class="item" data-price="25000" data-category="ca-phe">
+<h3>Cà phê đen</h3>
+<p>25.000đ</p>
+</article>
+<article class="item" data-price="30000" data-category="sua">
+<h3>Bạc xỉu</h3>
+
+<p>30.000đ</p>
+</article>
+<article class="item" data-price="35000" data-category="tra">
+<h3>Trà đào cam sả</h3>
+<p>35.000đ</p>
+</article>
+<!-- Ví dụ dùng "hidden": phần tử này sẽ KHÔNG hiển thị trên trang,
+chỉ hiện khi xóa thuộc tính hidden (ví dụ bằng JavaScript khi hết hàng) -->
+<p class="thong-bao" hidden>Món "Bạc xỉu" tạm thời hết nguyên liệu.</p>
+</section>
+<!-- Ví dụ dùng "contenteditable": nhân viên có thể click và sửa trực tiếp
+ghi chú này ngay trên trình duyệt mà không cần vào code -->
+<section>
+<h2>Ghi chú nội bộ</h2>
+<p class="ghi-chu" contenteditable="true">
+Nhấp vào đây để sửa ghi chú... (ví dụ: "Nhập thêm sữa tươi vào thứ 2")
+</p>
+</section>
+</main>
+<!-- ===== ASIDE: nội dung phụ, liên quan nhưng không phải chính ===== -->
+<aside>
+<h3>Ưu đãi hôm nay</h3>
+<p>Giảm 10% cho đơn từ 100.000đ. Áp dụng đến hết ngày.</p>
+</aside>
+
+<!-- ===== FOOTER ===== -->
+<footer id="lien-he">
+<p>&copy; 2026 Cafe ABC — 123 Đường ABC, Quận 1, TP.HCM</p>
+</footer>
+</body>
+</html>
+Bài thực hành số 2:
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Buổi 1 - Bài 2: CV cá nhân (Semantic HTML5)</title>
+<style>
+body { font-family: Arial, sans-serif; margin: 0; color: #222; background: #fafafa; }
+header { background: #34495e; color: #fff; padding: 24px; display: flex; align-items: center; gap: 20px; }
+header figure { margin: 0; text-align: center; }
+header figure img { width: 100px; height: 100px; border-radius: 50%; display: block; }
+header figcaption { font-size: 12px; color: #ccc; margin-top: 4px; }
+nav ul { list-style: none; display: flex; gap: 16px; padding: 0; margin: 8px 0 0; }
+nav a { color: #fff; text-decoration: none; }
+main { padding: 24px; max-width: 800px; margin: 0 auto; }
+section { background: #fff; padding: 16px 20px; margin-bottom: 20px; border-radius: 6px; }
+article { margin-bottom: 14px; padding-bottom: 10px; border-bottom: 1px solid #eee; }
+article:last-child { border-bottom: none; }
+
+aside { background: #eef2f5; padding: 16px 20px; border-radius: 6px; }
+footer { text-align: center; padding: 16px; color: #777; }
+time { color: #888; font-size: 14px; }
+</style>
+</head>
+<body>
+<!-- ===== HEADER: ảnh đại diện dùng figure + figcaption theo đúng yêu cầu bài tập ===== -->
+<header>
+<figure>
+<img src="avatar.jpg" alt="Ảnh đại diện của Nguyễn Văn A">
+<figcaption>Nguyễn Văn A</figcaption>
+</figure>
+<div>
+<h1>Nguyễn Văn A</h1>
+<p>Sinh viên ngành Công nghệ thông tin</p>
+<nav>
+<ul>
+<li><a href="#hoc-van">Học vấn</a></li>
+<li><a href="#kinh-nghiem">Kinh nghiệm</a></li>
+<li><a href="#ky-nang">Kỹ năng</a></li>
+</ul>
+</nav>
+</div>
+</header>
+<main>
+<section id="hoc-van">
+<h2>Học vấn</h2>
+
+<article>
+<h3>Cao đẳng Công nghệ thông tin</h3>
+<p>Trường Cao đẳng ABC</p>
+<p><time datetime="2023-09">09/2023</time> — hiện tại</p>
+</article>
+</section>
+<section id="kinh-nghiem">
+<h2>Kinh nghiệm</h2>
+<article>
+<h3>Thực tập sinh Frontend</h3>
+<p>Công ty XYZ Technology</p>
+<p><time datetime="2025-06">06/2025</time> — <time datetime="2025-12">12/2025</time></p>
+<p>Tham gia xây dựng giao diện web bằng HTML5, CSS3 và JavaScript cơ bản.</p>
+</article>
+</section>
+<section id="ky-nang">
+<h2>Kỹ năng</h2>
+<ul>
+<li>HTML5 &amp; CSS3</li>
+<li>JavaScript cơ bản</li>
+<li>Git &amp; GitHub</li>
+<li>Làm việc nhóm</li>
+</ul>
+</section>
+</main>
+<!-- ===== ASIDE: thông tin phụ - liên hệ ===== -->
+
+<aside>
+<h3>Thông tin liên hệ</h3>
+<p>Email: <a href="mailto:nguyenvana@example.com">nguyenvana@example.com</a></p>
+<p>Điện thoại: <a href="tel:0912345678">0912 345 678</a></p>
+</aside>
+<footer>
+<p>&copy; 2026 Nguyễn Văn A</p>
+</footer>
+</body>
+</html>

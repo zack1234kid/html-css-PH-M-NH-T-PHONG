@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Buổi 2 - Bài 1: Đăng ký khóa học</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #fafafa;
+      margin: 0;
+      padding: 24px;
+    }
+    form {
+      max-width: 480px;
+      margin: 0 auto;
+      background: #fff;
+      padding: 20px 24px;
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+    }
+    fieldset {
+      border: 1px solid #ddd;
+      border-radius: 6px;
+      padding: 16px 20px;
+    }
+    legend {
+      font-weight: bold;
+      padding: 0 8px;
+    }
+    label {
+      font-weight: bold;
+      display: block;
+      margin-bottom: 4px;
+    }
+    input, textarea {
+      width: 100%;
+      padding: 8px;
+      margin-top: 4px;
+      box-sizing: border-box;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+    input[type="range"] {
+      padding: 0;
+    }
+    p {
+      margin: 14px 0;
+    }
+    button {
+      width: 100%;
+      padding: 12px;
+      margin-top: 16px;
+      background: #3498db;
+      color: #fff;
+      border: none;
+      border-radius: 6px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+    button:hover {
+      background: #2980b9;
+    }
+    output {
+      font-weight: bold;
+      color: #3498db;
+    }
+    .required {
+      color: red;
+    }
+  </style>
+</head>
+<body>
+
+  <h1 style="text-align:center;">Đăng ký khóa học</h1>
+
+  <form action="#" method="post">
+    <fieldset>
+      <legend>Thông tin đăng ký</legend>
+
+      <p>
+        <label for="hoten">Họ và tên: <span class="required">*</span></label>
+        <input type="text" id="hoten" name="hoten" placeholder="Nguyễn Văn A" required autofocus>
+      </p>
+
+      <p>
+        <label for="email">Email: <span class="required">*</span></label>
+        <input type="email" id="email" name="email" placeholder="ten@example.com" required>
+      </p>
+
+      <p>
+        <label for="phone">Số điện thoại: <span class="required">*</span></label>
+        <input type="tel" id="phone" name="phone"
+               pattern="[0-9]{10}"
+               title="Nhập đúng 10 số điện thoại"
+               placeholder="0912345678"
+               required>
+      </p>
+
+      <p>
+        <label for="birthday">Ngày sinh:</label>
+        <input type="date" id="birthday" name="birthday" max="2026-08-14">
+      </p>
+
+      <p>
+        <label for="khoahoc">Khóa học quan tâm:</label>
+        <input type="text" id="khoahoc" name="khoahoc" list="khoahoc-list" placeholder="Chọn hoặc tự nhập...">
+        <datalist id="khoahoc-list">
+          <option value="HTML5 & CSS3">
+          <option value="JavaScript cơ bản">
+          <option value="Lập trình PHP">
+          <option value="Thiết kế UI/UX">
+        </datalist>
+      </p>
+
+      <p>
+        <label for="soubuoi">Số buổi muốn học mỗi tuần:</label>
+        <input type="range" id="soubuoi" name="soubuoi" min="1" max="7" value="3"
+               oninput="document.getElementById('ketqua').textContent = this.value">
+        <output id="ketqua">3</output> buổi/tuần
+      </p>
+
+      <p>
+        <label for="ngansach">Ngân sách dự kiến (đồng):</label>
+        <input type="range" id="ngansach" name="ngansach"
+               min="500000" max="10000000" step="500000" value="2000000"
+               oninput="document.getElementById('ketquaNganSach').textContent = Number(this.value).toLocaleString('vi-VN')">
+        <output id="ketquaNganSach">2.000.000</output>đ
+      </p>
+
+      <p>
+        <label for="ghichu">Ghi chú thêm:</label>
+        <textarea id="ghichu" name="ghichu" rows="3"
+                  placeholder="Ví dụ: buổi tối trong tuần, cuối tuần..."></textarea>
+      </p>
+    </fieldset>
+
+    <button type="submit">Đăng ký ngay</button>
+  </form>
+
+</body>
+</html>

@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Buổi 5 - Bài 2: Ghi nhớ Theme + Geolocation</title>
+<style>
+body {
+font-family: Arial, sans-serif; max-width: 480px; margin: 40px auto; padding: 0 16px;
+background: #ffffff; color: #222; transition: background 0.3s, color 0.3s;
+}
+/* Ở buổi này CHƯA học CSS Variables (sẽ học ở Buổi 11), nên tạm thời khai báo
+màu trực tiếp cho từng trạng thái class .dark trên <body> */
+body.dark { background: #1a1a2e; color: #f0f0f0; }
+h1 { text-align: center; }
+
+section { background: #f5f6fa; padding: 16px 20px; border-radius: 8px; margin-bottom: 20px; }
+body.dark section { background: #24243e; }
+button {
+padding: 10px 16px; border: none; border-radius: 6px; cursor: pointer;
+background: #3498db; color: #fff; font-size: 15px;
+}
+button:hover { background: #2980b9; }
+#ketQuaViTri { margin-top: 12px; font-size: 14px; }
+</style>
+</head>
+<body>
+<h1>Cài đặt trang</h1>
+<!-- ===== PHẦN 1: Ghi nhớ Theme sáng/tối bằng localStorage =====
+Đây là bước chuẩn bị trực tiếp cho kỹ thuật Dark/Light Mode hoàn chỉnh
+sẽ học ở Buổi 11 (khi đó sẽ dùng CSS Variables thay vì khai báo màu trực tiếp) -->
+<section>
+<h2>Giao diện</h2>
+<p>Chọn theme hiển thị, lựa chọn sẽ được ghi nhớ cho lần truy cập sau.</p>
+<button id="btnToggleTheme">🌙 Chế độ tối</button>
+</section>
+<!-- ===== PHẦN 2: Geolocation API =====
+Trình duyệt sẽ hỏi xin phép trước khi trả về vị trí -->
+<section>
+<h2>Vị trí của tôi</h2>
+<button id="btnLayViTri">📍 Lấy vị trí của tôi</button>
+<p id="ketQuaViTri"></p>
+</section>
+
+<script>
+// ================= PHẦN 1: THEME =================
+const btnToggle = document.getElementById('btnToggleTheme');
+const body = document.body;
+// Khi trang load: đọc theme đã lưu trước đó và áp dụng ngay
+const themeDaLuu = localStorage.getItem('theme');
+if (themeDaLuu === 'dark') {
+body.classList.add('dark');
+btnToggle.textContent = '☀️ Chế độ sáng';
+}
+btnToggle.addEventListener('click', function () {
+body.classList.toggle('dark');
+if (body.classList.contains('dark')) {
+localStorage.setItem('theme', 'dark');
+btnToggle.textContent = '☀️ Chế độ sáng';
+} else {
+localStorage.setItem('theme', 'light');
+btnToggle.textContent = '🌙 Chế độ tối';
+}
+});
+// ================= PHẦN 2: GEOLOCATION =================
+document.getElementById('btnLayViTri').addEventListener('click', function () {
+const ketQua = document.getElementById('ketQuaViTri');
+if (!('geolocation' in navigator)) {
+ketQua.textContent = 'Trình duyệt của bạn không hỗ trợ Geolocation.';
+return;
+
+}
+ketQua.textContent = 'Đang lấy vị trí...';
+navigator.geolocation.getCurrentPosition(
+function (viTri) {
+const lat = viTri.coords.latitude.toFixed(5);
+const lng = viTri.coords.longitude.toFixed(5);
+ketQua.textContent = 'Vĩ độ: ' + lat + ' — Kinh độ: ' + lng;
+},
+function (loi) {
+ketQua.textContent = 'Không lấy được vị trí: ' + loi.message;
+}
+);
+});
+</script>
+</body>
+</html>

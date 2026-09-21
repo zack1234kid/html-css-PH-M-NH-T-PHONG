@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Buổi 5 - Bài 1: To-do List</title>
+<style>
+body { font-family: Arial, sans-serif; max-width: 480px; margin: 40px auto; padding: 0 16px; background: #fafafa; }
+h1 { text-align: center; }
+.input-row { display: flex; gap: 8px; margin-bottom: 8px; }
+#inputCongViec { flex: 1; padding: 10px; border: 1px solid #ccc; border-radius: 4px; }
+#btnThem { padding: 10px 16px; background: #3498db; color: #fff; border: none; border-radius: 4px; cursor: pointer;
+}
+#btnThem:hover { background: #2980b9; }
+#trangThai { text-align: center; color: #555; margin-bottom: 12px; }
+ul { list-style: none; padding: 0; }
+li { display: flex; align-items: center; justify-content: space-between; background: #fff; padding: 10px 14px;
+margin: 8px 0; border-radius: 6px; box-shadow: 0 1px 3px rgba(0,0,0,0.1); cursor: pointer; }
+li span.ten { flex: 1; }
+li.done span.ten { text-decoration: line-through; color: #999; }
+li button { margin-left: 10px; background: #e74c3c; color: #fff; border: none; border-radius: 4px; padding: 6px
+10px; cursor: pointer; }
+li button:hover { background: #c0392b; }
+#btnXoaTatCa { display: block; margin: 20px auto 0; background: none; border: 1px solid #e74c3c; color: #e74c3c;
+padding: 8px 16px; border-radius: 4px; cursor: pointer; }
+#btnXoaTatCa:hover { background: #e74c3c; color: #fff; }
+</style>
+</head>
+
+<body>
+<h1>Danh sách công việc</h1>
+<div class="input-row">
+<input type="text" id="inputCongViec" placeholder="Nhập công việc mới...">
+<button id="btnThem">Thêm</button>
+</div>
+<p id="trangThai"></p>
+<ul id="danhSach"></ul>
+<button id="btnXoaTatCa">Xóa tất cả</button>
+<script>
+// ----- Đọc / lưu danh sách từ localStorage -----
+function layDanhSach() {
+const duLieu = localStorage.getItem('congViecList');
+return duLieu ? JSON.parse(duLieu) : [];
+}
+function luuDanhSach(danhSach) {
+localStorage.setItem('congViecList', JSON.stringify(danhSach));
+}
+// ----- Render danh sách ra màn hình -----
+function renderDanhSach() {
+const danhSach = layDanhSach();
+const ul = document.getElementById('danhSach');
+ul.innerHTML = '';
+danhSach.forEach(function (congViec, index) {
+
+const li = document.createElement('li');
+const span = document.createElement('span');
+span.className = 'ten';
+span.textContent = congViec.ten;
+li.appendChild(span);
+if (congViec.hoanThanh) {
+li.classList.add('done');
+}
+// click vào dòng để đánh dấu hoàn thành / bỏ hoàn thành
+li.addEventListener('click', function () {
+danhSach[index].hoanThanh = !danhSach[index].hoanThanh;
+luuDanhSach(danhSach);
+renderDanhSach();
+});
+// nút xóa từng việc
+const btnXoa = document.createElement('button');
+btnXoa.textContent = 'Xóa';
+btnXoa.addEventListener('click', function (e) {
+e.stopPropagation(); // tránh bấm Xóa lại kích hoạt luôn sự kiện click của li
+danhSach.splice(index, 1);
+luuDanhSach(danhSach);
+renderDanhSach();
+});
+li.appendChild(btnXoa);
+ul.appendChild(li);
+});
+
+// Hiển thị "Còn X công việc chưa hoàn thành"
+const conLai = danhSach.filter(function (cv) { return !cv.hoanThanh; }).length;
+document.getElementById('trangThai').textContent =
+danhSach.length === 0 ? 'Chưa có công việc nào' : 'Còn ' + conLai + ' công việc chưa hoàn thành';
+}
+// ----- Thêm công việc mới -----
+document.getElementById('btnThem').addEventListener('click', function () {
+const input = document.getElementById('inputCongViec');
+const tenCongViec = input.value.trim();
+if (tenCongViec === '') {
+alert('Vui lòng nhập tên công việc');
+return;
+}
+const danhSach = layDanhSach();
+danhSach.push({ ten: tenCongViec, hoanThanh: false });
+luuDanhSach(danhSach);
+input.value = '';
+renderDanhSach();
+});
+// Cho phép nhấn Enter để thêm nhanh
+document.getElementById('inputCongViec').addEventListener('keydown', function (e) {
+if (e.key === 'Enter') {
+document.getElementById('btnThem').click();
+}
+});
+// ----- Xóa tất cả (có xác nhận trước khi xóa) -----
+
+document.getElementById('btnXoaTatCa').addEventListener('click', function () {
+if (confirm('Bạn có chắc muốn xóa toàn bộ danh sách?')) {
+localStorage.clear();
+renderDanhSach();
+}
+});
+// Render ngay khi trang load — dữ liệu cũ (nếu có) sẽ hiện lại
+renderDanhSach();
+</script>
+</body>
+</html>
